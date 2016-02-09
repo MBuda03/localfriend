@@ -14,6 +14,15 @@ def detail_view(request, object_id=None):
         }
     return render(request, template, context)
 
+# Returns 1 tour with details
+def detail_slug_view(request, slug=None):
+    tour = get_object_or_404(Tour, slug=slug)
+    template = "detail_view.html"
+    context = {
+        "object": tour
+        }
+    return render(request, template, context)
+
 
 # Returns list of tours
 def list_view(request):
