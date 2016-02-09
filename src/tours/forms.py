@@ -8,6 +8,8 @@ PUBLISHED_CHOICES = (
     ('draft', "Draft"),
     )
 
+
+# Can get rid of this class
 class TourAddForm(forms.Form):
     title = forms.CharField(widget=forms.TextInput(
         attrs={
