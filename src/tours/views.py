@@ -24,6 +24,12 @@ class TourCreateView(CreateView):
         context["submit_btn"] = "Create Tour"
         return context
 
+    def form_valid(self, form):
+        user = self.request.user
+        form.instance.user = user
+        valid_data = super(TourCreateView, self).form_valid(form)
+        return valid_data
+
 class TourUpdateView(MultiSlugMixin, UpdateView):
     model = Tour
     template_name = "form_include.html"
@@ -36,6 +42,14 @@ class TourUpdateView(MultiSlugMixin, UpdateView):
         context = super(TourUpdateView, self).get_context_data(*args, **kwargs)
         context["submit_btn"] = "Update Tour"
         return context
+
+    def get_object(self, *args, **kwargs):
+        user = self.request.user
+        obj = super(TourUpdateView, self).get_object(*args, **kwargs)
+        if obj.user == user or user in obj.managers.all():
+            return obj
+        else:
+            raise Http404
 
 class TourListView(ListView):
     model = Tour
