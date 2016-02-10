@@ -3,7 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
-from localfriend.mixins import MultiSlugMixin
+from localfriend.mixins import MultiSlugMixin, LoginRequiredMixin
+
 
 from tours.forms import TourAddForm, TourModelForm
 from tours.models import Tour
@@ -11,7 +12,7 @@ from django.utils.text import slugify
 
 # Create your views here.
 
-class TourCreateView(CreateView):
+class TourCreateView(LoginRequiredMixin, CreateView):
     model = Tour
     template_name = "form_include.html"
     form_class = TourModelForm
@@ -30,7 +31,7 @@ class TourCreateView(CreateView):
         valid_data = super(TourCreateView, self).form_valid(form)
         return valid_data
 
-class TourUpdateView(MultiSlugMixin, UpdateView):
+class TourUpdateView(LoginRequiredMixin, MultiSlugMixin, UpdateView):
     model = Tour
     template_name = "form_include.html"
     form_class = TourModelForm
