@@ -2,12 +2,14 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from localfriend.mixins import MultiSlugMixin
 
 from tours.forms import TourAddForm, TourModelForm
 from tours.models import Tour
 from django.utils.text import slugify
 
 # Create your views here.
+
 
 class TourListView(ListView):
     model = Tour
@@ -16,7 +18,7 @@ class TourListView(ListView):
         qs = super(TourListView, self).get_queryset(**kwargs)
         return qs
 
-class TourDetailView(DetailView):
+class TourDetailView(MultiSlugMixin, DetailView):
     model = Tour
 
 
