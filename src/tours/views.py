@@ -1,11 +1,20 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
+from django.views.generic.list import ListView
 
 from tours.forms import TourAddForm, TourModelForm
 from tours.models import Tour
 from django.utils.text import slugify
 
 # Create your views here.
+
+class TourListView(ListView):
+    model = Tour
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super(TourListView, self).get_queryset(**kwargs)
+        return qs
+
 
 def create_view(request):
     form = TourModelForm(request.POST or None)

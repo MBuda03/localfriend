@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Tours</h1>
+<ul>
+  {% for instance in object_list %}
+    <li>{{ instance }} - {{ instance.description }} - {{ instance.price }}</li>
+  {% empty %}
+    <li>No tours found.<li>
+  {% endfor %}
+</ul>
+
+{% endblock content %}
