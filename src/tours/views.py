@@ -4,7 +4,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from localfriend.mixins import MultiSlugMixin, LoginRequiredMixin
-
+from django.core.urlresolvers import reverse
 
 from tours.mixins import TourManagerMixin
 from tours.forms import TourAddForm, TourModelForm
@@ -31,6 +31,9 @@ class TourCreateView(LoginRequiredMixin, CreateView):
         form.instance.user = user
         valid_data = super(TourCreateView, self).form_valid(form)
         return valid_data
+
+    def get_success_url(self):
+        return reverse("tour_list_view")
 
 class TourUpdateView(TourManagerMixin, UpdateView):
     model = Tour
