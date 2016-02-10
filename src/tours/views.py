@@ -2,7 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 from localfriend.mixins import MultiSlugMixin
 
 from tours.forms import TourAddForm, TourModelForm
@@ -15,11 +15,26 @@ class TourCreateView(CreateView):
     model = Tour
     template_name = "form_include.html"
     form_class = TourModelForm
+
+    #Need to change this later
     success_url = "/tours/add/"
 
     def get_context_data(self, *args, **kwargs):
         context = super(TourCreateView, self).get_context_data(*args, **kwargs)
         context["submit_btn"] = "Create Tour"
+        return context
+
+class TourUpdateView(UpdateView):
+    model = Tour
+    template_name = "form_include.html"
+    form_class = TourModelForm
+
+    #Need to change this later
+    success_url = "/tours/"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(TourUpdateView, self).get_context_data(*args, **kwargs)
+        context["submit_btn"] = "Update Tour"
         return context
 
 class TourListView(ListView):

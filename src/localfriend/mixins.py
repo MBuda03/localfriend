@@ -11,5 +11,5 @@ class MultiSlugMixin(object):
             except ModelClass.MultipleObjectsReturned:
                 obj = ModelClass.objects.filter(slug=slug).order_by("-title").first()
         else:
-            obj = super(MultipleSlugMixin, self).get_object(*args, **kwargs)
+            obj = super(MultiSlugMixin, self).get_object(*args, **kwargs)
         return obj
