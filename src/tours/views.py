@@ -6,6 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView
 from localfriend.mixins import MultiSlugMixin, LoginRequiredMixin
 
 
+from tours.mixins import TourManagerMixin
 from tours.forms import TourAddForm, TourModelForm
 from tours.models import Tour
 from django.utils.text import slugify
@@ -31,7 +32,7 @@ class TourCreateView(LoginRequiredMixin, CreateView):
         valid_data = super(TourCreateView, self).form_valid(form)
         return valid_data
 
-class TourUpdateView(LoginRequiredMixin, MultiSlugMixin, UpdateView):
+class TourUpdateView(TourManagerMixin, MultiSlugMixin, UpdateView):
     model = Tour
     template_name = "form_include.html"
     form_class = TourModelForm
@@ -44,13 +45,6 @@ class TourUpdateView(LoginRequiredMixin, MultiSlugMixin, UpdateView):
         context["submit_btn"] = "Update Tour"
         return context
 
-    def get_object(self, *args, **kwargs):
-        user = self.request.user
-        obj = super(TourUpdateView, self).get_object(*args, **kwargs)
-        if obj.user == user or user in obj.managers.all():
-            return obj
-        else:
-            raise Http404
 
 class TourListView(ListView):
     model = Tour
