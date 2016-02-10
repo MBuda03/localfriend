@@ -21,7 +21,7 @@ def create_slug(instance, new_slug=None):
     qs = Tour.objects.filter(slug=slug)
     exists = qs.exists()
     if qs:
-        new_slug = "%s-%s" %(slug, qs.first.id)
+        new_slug = "%s-%s" %(slug, qs.first().id)
         return create_slug(instance, new_slug=new_slug)
     return slug
 
