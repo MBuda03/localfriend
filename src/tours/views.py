@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 
 from tours.forms import TourAddForm, TourModelForm
 from tours.models import Tour
@@ -14,6 +15,9 @@ class TourListView(ListView):
     def get_queryset(self, *args, **kwargs):
         qs = super(TourListView, self).get_queryset(**kwargs)
         return qs
+
+class TourDetailView(DetailView):
+    model = Tour
 
 
 def create_view(request):
