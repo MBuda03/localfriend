@@ -24,7 +24,7 @@ class TourCreateView(CreateView):
         context["submit_btn"] = "Create Tour"
         return context
 
-class TourUpdateView(UpdateView):
+class TourUpdateView(MultiSlugMixin, UpdateView):
     model = Tour
     template_name = "form_include.html"
     form_class = TourModelForm

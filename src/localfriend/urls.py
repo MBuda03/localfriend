@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^tours/(?P<pk>\d+)/$', TourDetailView.as_view(), name='tour_detail_view'),
     url(r'^tours/(?P<slug>[\w-]+)/$', TourDetailView.as_view(), name='tour_detail_slug_view'),
     url(r'^tours/(?P<pk>\d+)/edit/$', TourUpdateView.as_view(), name='tour_update_view'),
+    url(r'^tours/(?P<slug>[\w-]+)/edit/$', TourUpdateView.as_view(), name='tour_update_slug_view'),
 
 
 
