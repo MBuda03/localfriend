@@ -13,8 +13,19 @@ class Tour(models.Model):
     def __unicode__(self):
         return self.title
 
+def create_slug(instance, new_slug=None):
+    slug = slugify(instance.title)
+    if new_slug is not None:
+        slug = new_slug
+
+    qs = Tour.objects.filter(slug=slug).exists()
+    if qs:
+        new_slug = "%s-%s" %(slug, instance.id)
+        create_slug(instance, new_slug=new_slug)
+    return slug
+
 def tour_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
-        instance.slug = slugify(instance.title)
+        instance.slug = create_slug(instance)
 
 pre_save.connect(tour_pre_save_receiver, sender=Tour)

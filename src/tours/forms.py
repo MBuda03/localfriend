@@ -1,5 +1,7 @@
 from django import forms
 
+from django.utils.text import slugify
+
 from tours.models import Tour
 
 
@@ -51,6 +53,15 @@ class TourModelForm(forms.ModelForm):
         ]
 
     # Form Validations Here
+    def clean(self, *args, **kwargs):
+        cleaned_data = super(TourModelForm, self).clean(*args, **kwargs)
+        title = cleaned_data.get("title")
+        slug = slugify(title)
+        qs = Tour.objects.filter(slug=slug).exists()
+        if qs:
+            raise forms.ValidationError("Tour title already exists. Please choose another title.")
+        return cleaned_data
+
     def clean_price(self):
         price = self.cleaned_data.get("price")
         return price
