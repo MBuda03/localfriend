@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save, post_save
 from django.utils.text import slugify
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -17,6 +18,10 @@ class Tour(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def get_absolute_url(self):
+        view_name = "tour_detail_slug_view"
+        return reverse(view_name, kwargs={"slug": self.slug})
 
 def create_slug(instance, new_slug=None):
     slug = slugify(instance.title)

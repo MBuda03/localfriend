@@ -19,7 +19,7 @@ class TourCreateView(LoginRequiredMixin, CreateView):
     form_class = TourModelForm
 
     #Need to change this later
-    success_url = "/tours/add/"
+    #success_url = "/tours/add/"
 
     def get_context_data(self, *args, **kwargs):
         context = super(TourCreateView, self).get_context_data(*args, **kwargs)
@@ -32,13 +32,13 @@ class TourCreateView(LoginRequiredMixin, CreateView):
         valid_data = super(TourCreateView, self).form_valid(form)
         return valid_data
 
-class TourUpdateView(TourManagerMixin, MultiSlugMixin, UpdateView):
+class TourUpdateView(TourManagerMixin, UpdateView):
     model = Tour
     template_name = "form_include.html"
     form_class = TourModelForm
 
     #Need to change this later
-    success_url = "/tours/"
+    #success_url = "/tours/"
 
     def get_context_data(self, *args, **kwargs):
         context = super(TourUpdateView, self).get_context_data(*args, **kwargs)
