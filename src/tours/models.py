@@ -21,7 +21,7 @@ def create_slug(instance, new_slug=None):
     qs = Tour.objects.filter(slug=slug).exists()
     if qs:
         new_slug = "%s-%s" %(slug, instance.id)
-        create_slug(instance, new_slug=new_slug)
+        return create_slug(instance, new_slug=new_slug)
     return slug
 
 def tour_pre_save_receiver(sender, instance, *args, **kwargs):
