@@ -8,7 +8,6 @@ from .views import (
                 TourUpdateView,
                 )
 
-
 urlpatterns = [
 
     url(r'^$', TourListView.as_view(), name='tour_list_view'),
