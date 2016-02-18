@@ -11,7 +11,7 @@ from tours.views import (
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^tours/',include("tours.urls") ),
+    url(r'^tours/',include("tours.urls", namespace='tours') ),
 
 ]
 

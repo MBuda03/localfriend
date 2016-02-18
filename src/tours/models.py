@@ -20,7 +20,7 @@ class Tour(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        view_name = "tour_detail_slug_view"
+        view_name = "tours:detail_slug"
         return reverse(view_name, kwargs={"slug": self.slug})
 
 def create_slug(instance, new_slug=None):
