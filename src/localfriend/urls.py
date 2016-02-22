@@ -10,6 +10,7 @@ from tours.views import (
 
 
 urlpatterns = [
+    #url(r'^$',TemplateView.as_view(template_name='index.html'), name='homepage'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^tours/',include("tours.urls", namespace='tours') ),
 
