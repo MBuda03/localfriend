@@ -32,17 +32,72 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#">Home</a></li>
+
+            <!--Search Box at Navbar starts here-->
+            <li>
+              <form class="navbar-form" role="search">
+					    <div class="input-group">
+						    <input type="text" class="form-control" placeholder="Search...">
+						      <span class="input-group-btn">
+							      <button type="submit" class="btn btn-default">
+								      <span class="glyphicon glyphicon-search">
+									      <span class="sr-only">Search...</span>
+								      </span>
+							      </button>
+						      </span>
+				        </div>
+				      </form>
+            </li>
+            <!--Search Box at Navbar ends here-->
+
             <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact">Login</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
     <div class="container">
-
       <div class="starter-template">
+
+
+        <!-- INDEX PAGE STARTS HERE-->
+
+
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+           <div class="jumbotron">
+             <div class="container">
+               <h1>Hello, Loakals!</h1>
+               <p>Some information text here!</p>
+               <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+             </div>
+           </div>
+
+
+
+          <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+        <div class="col-md-4">
+        <h2>United Kingdom</h2>
+        <p>Some information about UK and UK MAP IMG HERE</p>
+        <p><a class="btn btn-default" href="#" role="button">Choose UK &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+        <h2>Cyprus</h2>
+        <p>Some information about CYP and CYP MAP IMG HERE</p>
+        <p><a class="btn btn-default" href="#" role="button">Choose CYP &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+        <h2>Turkey</h2>
+        <p>Some information about TR and TR MAP IMG HERE</p>
+        <p><a class="btn btn-default" href="#" role="button">Choose TR &raquo;</a></p>
+        </div>
+        </div>
+        </div>
+
+        <!-- INDEX PAGE ENDS HERE-->
+
 
         {% block content %}
 
